@@ -1,1 +1,6 @@
 venv
+*.venv
+bin/
+lib/
+*.sqlite3
+
