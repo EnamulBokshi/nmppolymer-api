@@ -44,7 +44,7 @@ class UserUpdate(generics.UpdateAPIView):
 
 # Product APIs
 class ProductList(generics.ListAPIView):
-    queryset = Products.objects.all()
+    queryset = Products.objects.all().order_by('-created_at')
     serializer_class = ProductSerializer
     permission_classes = [AllowAny]
 
@@ -192,7 +192,7 @@ class SliderCreate(generics.CreateAPIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 class SliderList(generics.ListAPIView):
-    queryset = Slider.objects.all()
+    queryset = Slider.objects.all().order_by('-created_at')
     serializer_class = SliderSerializer
     permission_classes = [AllowAny]
 
@@ -241,7 +241,7 @@ class ContactCreate(generics.CreateAPIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
 class ContactList(generics.ListAPIView):
-    queryset = Contact.objects.all()
+    queryset = Contact.objects.all().order_by('-created_at')
     serializer_class = ContactSerializer
     permission_classes = [IsAuthenticated]
 
@@ -322,7 +322,7 @@ class ContactListByCategory(generics.ListAPIView):
 
 # News APIs
 class NewsList(generics.ListAPIView):
-    queryset = News.objects.all()
+    queryset = News.objects.all().order_by('-created_at')
     serializer_class = NewsSerializer
     permission_classes = [AllowAny]
 

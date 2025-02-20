@@ -107,7 +107,7 @@ class News(models.Model):
 class Testimonial(models.Model):
     name = models.CharField(max_length=255)
     content = models.TextField()
-    image = models.ImageField(upload_to=news_file_path, null=True, blank=True)
+    image = models.ImageField(upload_to=testimonial_file_path, null=True, blank=True)
     author = models.ForeignKey(User,on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     
