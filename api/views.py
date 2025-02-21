@@ -8,6 +8,8 @@ from rest_framework.response import Response
 from .models import Contact, News, Products, Category, Slider, Testimonial
 from .serializers import ContactSerializer, NewsSerializer, ProductSerializer, CategorySerializer, TestimonialSerializer, UserSerializer, SliderSerializer
 import os
+import cloudinary
+from cloudinary.uploader import destroy
 
 # User APIs
 class CreateUserView(generics.CreateAPIView):
@@ -111,19 +113,17 @@ class ProductDelete(generics.DestroyAPIView):
                 status=status.HTTP_403_FORBIDDEN
             )
         
-        # Delete associated media files
+        # Delete associated media files from Cloudinary
         media_fields = ['image', 'image2', 'image3', 'image4']
         for field in media_fields:
             media_file = getattr(product, field)
             if media_file:
                 try:
-                    # Delete the file from storage
-                    if os.path.isfile(media_file.path):
-                        os.remove(media_file.path)
-                    # Try to remove empty directory if exists
-                    directory = os.path.dirname(media_file.path)
-                    if os.path.exists(directory) and not os.listdir(directory):
-                        os.rmdir(directory)
+                    # Extract public_id from the image URL
+                    public_id = os.path.splitext(os.path.basename(media_file.name))[0]
+                    
+                    # Delete the file from Cloudinary
+                    cloudinary.uploader.destroy(public_id)
                 except Exception as e:
                     print(f"Error deleting media file {field}: {str(e)}")
         
@@ -423,4 +423,3 @@ class TestimonialDelete(generics.DestroyAPIView):
             return Response({'error': 'You do not have permission to delete this testimonial'}, status=status.HTTP_403_FORBIDDEN)
         self.perform_destroy(testimonial)
         return Response({'message': 'Testimonial deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
-    

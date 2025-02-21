@@ -19,6 +19,7 @@ from corsheaders.defaults import default_headers
 load_dotenv()
 from decouple import config
 import cloudinary_storage
+import cloudinary
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -173,6 +174,14 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+cloudinary.config( 
+  cloud_name = "da59vv48c", 
+  api_key = "859235219229299", 
+  api_secret = "zl4IF3cjJ6YzpF6QdtrzHVQ8KMM", 
+  secure = True
+)
+
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'da59vv48c',
     'API_KEY': '859235219229299',
