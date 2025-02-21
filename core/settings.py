@@ -18,6 +18,7 @@ import os
 from corsheaders.defaults import default_headers
 load_dotenv()
 from decouple import config
+import cloudinary_storage
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -47,6 +48,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -112,7 +115,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
-        'USER:': 'postgres',
+        'USER': 'postgres',
         'PASSWORD': 'KWRAXaQcDpSgXpgffcRcKyQUcbEQIqXy',
         'HOST': 'metro.proxy.rlwy.net',
         'PORT': '34830',
@@ -170,8 +173,13 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'da59vv48c',
+    'API_KEY': '859235219229299',
+    'API_SECRET':'zl4IF3cjJ6YzpF6QdtrzHVQ8KMM'
+}
 
-
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
