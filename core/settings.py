@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-o=m5+p^=^8qhrf^w4+6=9zf4ob-+8sw7i7bgh7=0$yb^fy@1)u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['nmppolymer-api.onrender.com']
 
@@ -184,7 +184,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:3000",
     "https://nmppolymer.com",
+    'https://nmppolymer-fronend.vercel.app'
 ]
+
 CORS_ALLOW_HEADERS = list(default_headers) + [
     'Authorization',
 ]
