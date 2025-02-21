@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-o=m5+p^=^8qhrf^w4+6=9zf4ob-+8sw7i7bgh7=0$yb^fy@1)u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://nmppolymer-api.onrender.com/']
+ALLOWED_HOSTS = ['nmppolymer-api.onrender.com']
 
 
 # Application definition
